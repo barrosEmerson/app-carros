@@ -10,6 +10,6 @@ public class IndexController {
 
     @GetMapping
     public String init(){
-        return "teste2";
+        return "Heroku";
     }
 }
