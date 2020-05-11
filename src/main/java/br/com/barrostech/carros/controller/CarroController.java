@@ -4,6 +4,7 @@ import br.com.barrostech.carros.domain.Carro;
 import br.com.barrostech.carros.dto.CarroDTO;
 import br.com.barrostech.carros.service.CarroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,9 @@ public class CarroController {
     private CarroService carroService;
 
     @GetMapping
-    public List<CarroDTO> getCarros(){
-        return carroService.getCarro();
+    public List<CarroDTO> getCarros(@RequestParam(value = "page", defaultValue = "0")Integer page,
+                                    @RequestParam(value = "size", defaultValue = "10")Integer size){
+        return carroService.getCarro(PageRequest.of(page,size));
     }
 
     @GetMapping("/{id}")

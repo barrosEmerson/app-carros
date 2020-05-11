@@ -5,6 +5,7 @@ import br.com.barrostech.carros.domain.exception.ObjecNotFoundException;
 import br.com.barrostech.carros.dto.CarroDTO;
 import br.com.barrostech.carros.repository.CarroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -18,7 +19,7 @@ public class CarroService {
     @Autowired
     private CarroRepository carroRepository;
 
-    public List<CarroDTO> getCarro(){
+    public List<CarroDTO> getCarro(Pageable pageable){
         return carroRepository.findAll().stream().map(CarroDTO::create).collect(Collectors.toList());
     }
 
